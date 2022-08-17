@@ -723,7 +723,7 @@ GMTab:AddButton({
 	Callback = function()
 		for i, v in pairs(replicationstorage.Weapons:GetDescendants()) do
 			 if v.Name == "FireRate" then
-       			v.Value = 0.025
+       			v.Value = 0.022
    			end
 		end
   	end    
@@ -771,7 +771,7 @@ LPTab:AddButton({
 
 		wait(1)
 		hmd:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
-			hmd.WalkSpeed = 62
+			hmd.WalkSpeed = 75
 		end)
   	end    
 })
@@ -854,8 +854,6 @@ local MiscTab = Window:MakeTab({
 	PremiumOnly = false
 })
 
-MiscTab:AddLabel("Credits To Orion Library")
-
 MiscTab:AddButton({
 	Name = "Unlock FPS",
 	Callback = function()
@@ -867,5 +865,5 @@ OrionLib:MakeNotification({
 	Name = "Enjoy!",
 	Content = "Niksploit Hub Is Loaded!",
 	Image = "rbxassetid://4483345998",
-	Time = 3
+	Time = 5,
 })
