@@ -722,8 +722,11 @@ GMTab:AddButton({
 	Name = "FireRate",
 	Callback = function()
 		for i, v in pairs(replicationstorage.Weapons:GetDescendants()) do
-			 if v.Name == "FireRate" then
+			if v.Name == "FireRate" then
        			v.Value = 0.022
+   			end
+			if v.Name == "Crit" then
+       			v.Value = 20
    			end
 		end
   	end    
@@ -736,17 +739,6 @@ GMTab:AddButton({
 			wait(1.3)
 			getsenv(game:GetService("Players").LocalPlayer.PlayerGui.GUI.Client.Functions.Weapons).ammocount.Value = 25
             getsenv(game:GetService("Players").LocalPlayer.PlayerGui.GUI.Client.Functions.Weapons).ammocount.Value = 26
-		end
-  	end    
-})
-
-GMTab:AddButton({
-	Name = "Anti Over Heat",
-	Callback = function()
-		for i, v in pairs(replicationstorage.Weapons:GetDescendants()) do
-			 if v.Name == "Crit" then
-       			v.Value = 20
-   			end
 		end
   	end    
 })
