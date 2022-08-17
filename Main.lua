@@ -838,6 +838,20 @@ FETab:AddButton({
   	end    
 })
 
+FETab:AddButton({
+	Name = "Spam Sounds",
+	Callback = function()
+		while true do
+			wait(0.6)
+			for _, sound in next, workspace:GetDescendants() do
+				if sound:IsA("Sound") then
+					sound:Play()
+				end
+			end
+		end
+  	end    
+})
+
 local VisTab = Window:MakeTab({
 	Name = "Visuals",
 	Icon = "rbxassetid://4483345998",
@@ -873,31 +887,18 @@ MiscTab:AddButton({
 	Name = "Unlock FPS",
 	Callback = function()
 		setfpscap(430)
-  	end    
+  	end
 })
 
 MiscTab:AddButton({
-	Name = "Crash Server",
+	Name = "God Mode (Cant Kill)",
 	Callback = function()
-		while true do
-			print("print(crash server)")
-			print("print(crash server)")
-			print("print(crash server)")
-			print("print(crash server)")
-			print("print(crash server)")
-			print("print(crash server)")
-			print("print(crash server)")
-			print("print(crash server)")
-			print("print(crash server)")
-			print("print(crash server)")
-			print("print(crash server)")
-			print("print(crash server)")
-			print("print(crash server)")
-			print("print(crash server)")
-			print("print(crash server)")
-			print("print(crash server)")
-			print("print(crash server)")
-			print("print(crash server)")
-		end
+		game.Players.LocalPlayer.Character.Spawned:Destroy()
+		OrionLib:MakeNotification({
+			Name = "How To Disable",
+			Content = "Reset Or Simply Tap Backspace",
+			Image = "rbxassetid://4483345998",
+			Time = 7
+		})
   	end    
 })
