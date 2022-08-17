@@ -805,6 +805,39 @@ LPTab:AddSlider({
 	end    
 })
 
+local FETab = Window:MakeTab({
+	Name = "FE",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+FETab:AddButton({
+	Name = "Sunglasses",
+	Callback = function()
+		 while true do 
+			game:GetService("ReplicatedStorage").Events.Sunglasses:FireServer()
+			wait(0.3) 
+		 end
+  	end    
+})
+
+FETab:AddButton({
+	Name = "Headless",
+	Callback = function()
+		game.Players.LocalPlayer.Character:FindFirstChild("FakeHead"):Destroy()
+  	end    
+})
+
+FETab:AddButton({
+	Name = "Bald Delinquent",
+	Callback = function()
+		 while true do 
+			game:GetService("ReplicatedStorage").Events.Sunglasses:FireServer()
+			wait(0.3) 
+		 end
+  	end    
+})
+
 local VisTab = Window:MakeTab({
 	Name = "Visuals",
 	Icon = "rbxassetid://4483345998",
@@ -830,16 +863,6 @@ VisTab:AddButton({
   	end    
 })
 
-VisTab:AddButton({
-	Name = "Sunglasses",
-	Callback = function()
-		 while true do 
-			game:GetService("ReplicatedStorage").Events.Sunglasses:FireServer()
-			wait(0.4) 
-		 end
-  	end    
-})
-
 local MiscTab = Window:MakeTab({
 	Name = "Misc",
 	Icon = "rbxassetid://4483345998",
@@ -850,5 +873,31 @@ MiscTab:AddButton({
 	Name = "Unlock FPS",
 	Callback = function()
 		setfpscap(430)
+  	end    
+})
+
+MiscTab:AddButton({
+	Name = "Crash Server",
+	Callback = function()
+		while true do
+			print("print(crash server)")
+			print("print(crash server)")
+			print("print(crash server)")
+			print("print(crash server)")
+			print("print(crash server)")
+			print("print(crash server)")
+			print("print(crash server)")
+			print("print(crash server)")
+			print("print(crash server)")
+			print("print(crash server)")
+			print("print(crash server)")
+			print("print(crash server)")
+			print("print(crash server)")
+			print("print(crash server)")
+			print("print(crash server)")
+			print("print(crash server)")
+			print("print(crash server)")
+			print("print(crash server)")
+		end
   	end    
 })
