@@ -852,10 +852,3 @@ MiscTab:AddButton({
 		setfpscap(430)
   	end    
 })
-
-OrionLib:MakeNotification({
-	Name = "Enjoy!",
-	Content = "Niksploit Hub Is Loaded!",
-	Image = "rbxassetid://4483345998",
-	Time = 5,
-})
