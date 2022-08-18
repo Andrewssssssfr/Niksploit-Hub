@@ -857,5 +857,11 @@ MiscTab:AddButton({
 	Name = "Invisible + God Mode (Beta)",
 	Callback = function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/Andrewssssssfr/Invis/main/Invis"))()
+		OrionLib:MakeNotification({
+			Name = "Note",
+			Content = "You can get killed by explosion weapons!",
+			Image = "rbxassetid://4483345998",
+			Time = 7
+		})
   	end    
 })
