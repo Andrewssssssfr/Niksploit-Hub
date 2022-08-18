@@ -1,5 +1,31 @@
+local exploit = ""
+
+if KRNL_LOADED then
+	exploit = "Krnl"
+elseif syn then
+	exploit = "Synapse X"
+elseif secure_load then
+	exploit = "Sentinel"
+elseif is_sirhurt_closure then
+	exploit = "Sirhurt"
+elseif pebc_execute then
+	exploit = "Protosmasher"
+elseif jit then
+	exploit = "EasyExploits API"
+elseif getscriptenvs then
+	exploit = "Calamari"
+elseif OXYGEN_LOADED then
+	exploit = "Oxygen U"
+elseif IsElectron then
+	exploit = "Electron"
+elseif WrapGlobal then
+	exploit = "WeAreDevs API"
+else
+	exploit = ""
+end
+
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "Niksploit Hub", HidePremium = true, IntroText = "Niksploit Hub", SaveConfig = true, ConfigFolder = "Niksploithub"})
+local Window = OrionLib:MakeWindow({Name = "Cookie Hub", HidePremium = true, IntroText = "Cookie Hub - "..exploit, SaveConfig = true, ConfigFolder = exploit})
 local replicationstorage = game.ReplicatedStorage
 _G.infinjump = false
 
@@ -850,5 +876,12 @@ MiscTab:AddButton({
 	Name = "Unlock FPS",
 	Callback = function()
 		setfpscap(430)
+  	end
+})
+
+MiscTab:AddButton({
+	Name = "Crash Server",
+	Callback = function()
+		OrionLib:Destroy()
   	end
 })
