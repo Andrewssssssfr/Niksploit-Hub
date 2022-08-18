@@ -757,13 +757,6 @@ LPTab:AddButton({
 })
 
 LPTab:AddButton({
-	Name = "Invisible 2",
-	Callback = function()
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/Andrewssssssfr/Invis/main/Invis"))()
-  	end    
-})
-
-LPTab:AddButton({
 	Name = "Fast",
 	Callback = function()
 		local hmd = game.Players.LocalPlayer.Character.Humanoid
@@ -861,14 +854,8 @@ MiscTab:AddButton({
 })
 
 MiscTab:AddButton({
-	Name = "God Mode (Cant Kill)",
+	Name = "Invisible + God Mode (Beta)",
 	Callback = function()
-		game.Players.LocalPlayer.Character.Spawned:Destroy()
-		OrionLib:MakeNotification({
-			Name = "How To Disable",
-			Content = "Reset Or Simply Tap Backspace",
-			Image = "rbxassetid://4483345998",
-			Time = 7
-		})
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Andrewssssssfr/Invis/main/Invis"))()
   	end    
 })
