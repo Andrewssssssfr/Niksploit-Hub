@@ -805,53 +805,6 @@ LPTab:AddSlider({
 	end    
 })
 
-local FETab = Window:MakeTab({
-	Name = "FE",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-FETab:AddButton({
-	Name = "Sunglasses",
-	Callback = function()
-		 while true do 
-			game:GetService("ReplicatedStorage").Events.Sunglasses:FireServer()
-			wait(0.3) 
-		 end
-  	end    
-})
-
-FETab:AddButton({
-	Name = "Headless",
-	Callback = function()
-		game.Players.LocalPlayer.Character:FindFirstChild("FakeHead"):Destroy()
-  	end    
-})
-
-FETab:AddButton({
-	Name = "Bald Delinquent",
-	Callback = function()
-		 while true do 
-			game:GetService("ReplicatedStorage").Events.Sunglasses:FireServer()
-			wait(0.3) 
-		 end
-  	end    
-})
-
-FETab:AddButton({
-	Name = "Spam Sounds",
-	Callback = function()
-		while true do
-			wait(0.6)
-			for _, sound in next, workspace:GetDescendants() do
-				if sound:IsA("Sound") then
-					sound:Play()
-				end
-			end
-		end
-  	end    
-})
-
 local VisTab = Window:MakeTab({
 	Name = "Visuals",
 	Icon = "rbxassetid://4483345998",
@@ -874,6 +827,16 @@ VisTab:AddButton({
 	Name = "Rainbow Gun",
 	Callback = function()
 		local c = 1 function zigzag(X)  return math.acos(math.cos(X * math.pi)) / math.pi end game:GetService("RunService").RenderStepped:Connect(function()  if game.Workspace.Camera:FindFirstChild('Arms') then   for i,v in pairs(game.Workspace.Camera.Arms:GetDescendants()) do    if v.ClassName == 'MeshPart' then      v.Color = Color3.fromHSV(zigzag(c),1,1)     c = c + .0001    end   end  end end)
+  	end    
+})
+
+VisTab:AddButton({
+	Name = "Sunglasses",
+	Callback = function()
+		 while true do 
+			game:GetService("ReplicatedStorage").Events.Sunglasses:FireServer()
+			wait(0.3) 
+		 end
   	end    
 })
 
