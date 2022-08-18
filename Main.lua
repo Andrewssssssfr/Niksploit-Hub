@@ -757,6 +757,13 @@ LPTab:AddButton({
 })
 
 LPTab:AddButton({
+	Name = "Invisible 2",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Andrewssssssfr/Invis/main/Invis"))()
+  	end    
+})
+
+LPTab:AddButton({
 	Name = "Fast",
 	Callback = function()
 		local hmd = game.Players.LocalPlayer.Character.Humanoid
