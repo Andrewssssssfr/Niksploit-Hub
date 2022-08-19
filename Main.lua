@@ -21,13 +21,19 @@ elseif IsElectron then
 elseif WrapGlobal then
 	exploit = "WeAreDevs API"
 else
-	exploit = ""
+	exploit = "Supported"
 end
 
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = "Cookie Hub", HidePremium = true, IntroText = "Cookie Hub - "..exploit, SaveConfig = true, ConfigFolder = exploit})
 local replicationstorage = game.ReplicatedStorage
 _G.infinjump = false
+_G.WRDESPNames = false
+_G.WRDESPTracers = false
+_G.WRDESPTeamColors = true
+_G.WRDESPBoxes = true
+
+
 
 function infjump()
 	_G.infinjump = true
@@ -490,7 +496,8 @@ function DetectPlayer()
 	local RaycastParam = RaycastParams.new()
 	RaycastParam.FilterType = Enum.RaycastFilterType.Blacklist
 	RaycastParam.FilterDescendantsInstances = Blacklist
-
+	
+	wait(1.1)
 	local NewRay = Ray.new(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position + Vector3.new(0, 1.5, 0), workspace.CurrentCamera.CFrame.LookVector * 50000, RaycastParam)
 	local PlayerGot
 
@@ -498,10 +505,12 @@ function DetectPlayer()
 		if NewRay.Instance:IsDescendantOf(workspace) then
 			if NewRay.Instance.Parent:IsA("Model") then
 				if game:GetService("Players"):GetPlayerFromCharacter(NewRay.Instance.Parent) then
+					wait(0.4)
 					PlayerGot = game:GetService("Players"):GetPlayerFromCharacter(NewRay.Instance.Parent)
 				end
 			elseif NewRay.Instance.Parent:IsA("Accessory") then
 				if game:GetService("Players"):GetPlayerFromCharacter(NewRay.Instance.Parent.Parent) then
+					wait(0.4)
 					PlayerGot = game:GetService("Players"):GetPlayerFromCharacter(NewRay.Instance.Parent.Parent)
 				end
 			end
@@ -554,10 +563,10 @@ function StartAutofarm()
 					end
 				end
 			end
-			wait(0.1)
+			wait(0.35)
 		until game:GetService("ReplicatedStorage").wkspc.Status.RoundOver.Value == true
 
-		wait(1)
+		wait(1.3)
 		print("f")
 	end)
 end
@@ -565,7 +574,7 @@ end
 
 
 spawn(function()
-	while wait(0.1) do
+	while wait(0.5) do
 		if game:GetService("Players").LocalPlayer.NRPBS.Health.Value <= 0 and game:GetService("Players").LocalPlayer.Status.Team.Value ~= "Spectator" then
 			print("l")
 		end
@@ -687,8 +696,11 @@ setreadonly(MT, true)
 CombatTab:AddButton({
 	Name = "Semi-Wallbang",
 	Callback = function()
-		local WallBangHook = loadstring(game:HttpGetAsync("https://pastebin.com/raw/3cCyS6GF"))()
-		WallBangHook:HookIndex("Clips",function()end,workspace.Map)
+		while true do
+			wait(27)
+			local WallBangHook = loadstring(game:HttpGetAsync("https://pastebin.com/raw/3cCyS6GF"))()
+			WallBangHook:HookIndex("Clips",function()end,workspace.Map)
+		end
   	end    
 })
 
@@ -842,10 +854,26 @@ VisTab:AddToggle({
 	Default = false,
 	Callback = function(Value)
 		if Value then
-			loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/WRD%20ESP.txt"))()
+			loadstring(game:HttpGet("https://pastebin.com/raw/7jBG7Qa7"))()
 		else
 			_G.WRDESPEnabled = false
 		end
+	end    
+})
+
+VisTab:AddToggle({
+	Name = "Tracers",
+	Default = false,
+	Callback = function(Value)
+		_G.WRDESPTracers = Value
+	end    
+})
+
+VisTab:AddToggle({
+	Name = "Names & Distance",
+	Default = false,
+	Callback = function(Value)
+		_G.WRDESPNames = Value
 	end    
 })
 
