@@ -28,12 +28,6 @@ local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shl
 local Window = OrionLib:MakeWindow({Name = "Cookie Hub", HidePremium = true, IntroText = "Cookie Hub - "..exploit, SaveConfig = true, ConfigFolder = exploit})
 local replicationstorage = game.ReplicatedStorage
 _G.infinjump = false
-_G.WRDESPNames = false
-_G.WRDESPTracers = false
-_G.WRDESPTeamColors = true
-_G.WRDESPBoxes = true
-
-
 
 function infjump()
 	_G.infinjump = true
@@ -773,10 +767,29 @@ GMTab:AddButton({
 GMTab:AddButton({
 	Name = "Infinite Ammo",
 	Callback = function()
+		for i, v in pairs(replicationstorage.Weapons:GetDescendants()) do
+			if v.Name == "ReloadTime" then
+				v.Value = 0
+			end
+		end
 		while true do
-			wait(1)
+			wait(0.2)
 			getsenv(game:GetService("Players").LocalPlayer.PlayerGui.GUI.Client.Functions.Weapons).ammocount.Value = 25
             getsenv(game:GetService("Players").LocalPlayer.PlayerGui.GUI.Client.Functions.Weapons).ammocount.Value = 26
+		end
+  	end    
+})
+
+GMTab:AddButton({
+	Name = "No Equip Time & No Self Damage",
+	Callback = function()
+		for i, v in pairs(replicationstorage.Weapons:GetDescendants()) do
+			if v.Name == "EquipTime" then
+				v.Value = 0.0000001
+			end
+			if v.Name == "SelfDamage" then
+				v.Value = 0
+			end
 		end
   	end    
 })
@@ -906,7 +919,7 @@ VisTab:AddButton({
 	Callback = function()
 		 while true do 
 			game:GetService("ReplicatedStorage").Events.Sunglasses:FireServer()
-			wait(0.3) 
+			wait(0.2) 
 		 end
   	end    
 })
