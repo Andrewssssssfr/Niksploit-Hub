@@ -687,34 +687,50 @@ setreadonly(MT, true)
 	end
 })
 
-CombatTab:AddButton({
+CombatTab:AddToggle({
 	Name = "Semi-Wallbang",
-	Callback = function()
-		while true do
-			wait(27)
+	Default = false,
+	Callback = function(Value)
+		_G.SemiWallbang = Value 
+		while _G.SemiWallbang do
 			local WallBangHook = loadstring(game:HttpGetAsync("https://pastebin.com/raw/3cCyS6GF"))()
 			WallBangHook:HookIndex("Clips",function()end,workspace.Map)
+			wait(27)
 		end
-  	end    
+	end    
 })
 
-CombatTab:AddButton({
+CombatTab:AddToggle({
 	Name = "Instant Respawn",
-	Callback = function()
-		spawn(function()
-			while wait(0.1) do
-				if game:GetService("Players").LocalPlayer.NRPBS.Health.Value <= 0 and game:GetService("Players").LocalPlayer.Status.Team.Value ~= "Spectator" then
-					game:GetService("ReplicatedStorage").Events.LoadCharacter:FireServer()
-				end
+	Default = false,
+	Callback = function(Value)
+		_G.InstRespawn = Value 
+		while _G.InstRespawn do
+			wait(0.1)
+			if game:GetService("Players").LocalPlayer.NRPBS.Health.Value <= 0 and game:GetService("Players").LocalPlayer.Status.Team.Value ~= "Spectator" then
+				game:GetService("ReplicatedStorage").Events.LoadCharacter:FireServer()
 			end
-		end)
-  	end    
+		end
+	end    
 })
 
 local GMTab = Window:MakeTab({
 	Name = "Gun Mods",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
+})
+
+GMTab:AddToggle({
+	Name = "Infinite Ammo",
+	Default = false,
+	Callback = function(Value)
+		_G.InfAmmo = Value 
+		while _G.InfAmmo do
+			wait(0.2)
+			getsenv(game:GetService("Players").LocalPlayer.PlayerGui.GUI.Client.Functions.Weapons).ammocount.Value = 25
+            getsenv(game:GetService("Players").LocalPlayer.PlayerGui.GUI.Client.Functions.Weapons).ammocount.Value = 26
+		end
+	end    
 })
 
 GMTab:AddButton({
@@ -765,29 +781,16 @@ GMTab:AddButton({
 })
 
 GMTab:AddButton({
-	Name = "Infinite Ammo",
-	Callback = function()
-		for i, v in pairs(replicationstorage.Weapons:GetDescendants()) do
-			if v.Name == "ReloadTime" then
-				v.Value = 0
-			end
-		end
-		while true do
-			wait(0.2)
-			getsenv(game:GetService("Players").LocalPlayer.PlayerGui.GUI.Client.Functions.Weapons).ammocount.Value = 25
-            getsenv(game:GetService("Players").LocalPlayer.PlayerGui.GUI.Client.Functions.Weapons).ammocount.Value = 26
-		end
-  	end    
-})
-
-GMTab:AddButton({
-	Name = "No Equip Time & No Self Damage",
+	Name = "No Reload Time & Equip Time",
 	Callback = function()
 		for i, v in pairs(replicationstorage.Weapons:GetDescendants()) do
 			if v.Name == "EquipTime" then
 				v.Value = 0.0000001
 			end
 			if v.Name == "SelfDamage" then
+				v.Value = 0
+			end
+			if v.Name == "ReloadTime" then
 				v.Value = 0
 			end
 		end
@@ -849,18 +852,15 @@ LPTab:AddToggle({
 	Name = "Chat Spam",
 	Default = false,
 	Callback = function(Value)
-		spawn(function()
-			while true do
-				wait(.013)
-				local A_1 = "Haha!"
-				local A_2 = chatmessage
-				local A_3 = false
-				local Event = game:GetService("ReplicatedStorage").Events.PlayerChatted
-				if Value then
-					Event:FireServer(A_1, A_2, A_3)
-				end
-			end
-		end)
+		_G.ChatSpam = Value 
+		while _G.ChatSpam do
+			wait(.013)
+			local A_1 = "Haha!"
+			local A_2 = chatmessage
+			local A_3 = false
+			local Event = game:GetService("ReplicatedStorage").Events.PlayerChatted
+			Event:FireServer(A_1, A_2, A_3)
+		end
 	end    
 })
 
@@ -907,20 +907,22 @@ VisTab:AddToggle({
 	end    
 })
 
+VisTab:AddToggle({
+	Name = "FE Sunglasses",
+	Default = false,
+	Callback = function(Value)
+		_G.FEsungl = Value
+		while _G.FEsungl do
+			game:GetService("ReplicatedStorage").Events.Sunglasses:FireServer()
+			wait(0.2) 
+		end
+	end    
+})
+
 VisTab:AddButton({
 	Name = "Rainbow Gun",
 	Callback = function()
 		local c = 1 function zigzag(X)  return math.acos(math.cos(X * math.pi)) / math.pi end game:GetService("RunService").RenderStepped:Connect(function()  if game.Workspace.Camera:FindFirstChild('Arms') then   for i,v in pairs(game.Workspace.Camera.Arms:GetDescendants()) do    if v.ClassName == 'MeshPart' then      v.Color = Color3.fromHSV(zigzag(c),1,1)     c = c + .0001    end   end  end end)
-  	end    
-})
-
-VisTab:AddButton({
-	Name = "FE Sunglasses",
-	Callback = function()
-		 while true do 
-			game:GetService("ReplicatedStorage").Events.Sunglasses:FireServer()
-			wait(0.2) 
-		 end
   	end    
 })
 
