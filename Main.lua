@@ -774,7 +774,7 @@ GMTab:AddButton({
 	Name = "Infinite Ammo",
 	Callback = function()
 		while true do
-			wait(1.3)
+			wait(1)
 			getsenv(game:GetService("Players").LocalPlayer.PlayerGui.GUI.Client.Functions.Weapons).ammocount.Value = 25
             getsenv(game:GetService("Players").LocalPlayer.PlayerGui.GUI.Client.Functions.Weapons).ammocount.Value = 26
 		end
