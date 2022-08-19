@@ -830,17 +830,34 @@ LPTab:AddToggle({
 	end    
 })
 
-LPTab:AddSlider({
-	Name = "FOV",
-	Min = 10,
-	Max = 120,
-	Default = game:GetService("Players").LocalPlayer.Settings.FOV.Value,
-	Color = Color3.fromRGB(255,255,255),
-	Increment = 1,
-	ValueName = "FOV",
+local chatmessage = "Cookie Hub On Top"
+
+LPTab:AddToggle({
+	Name = "Chat Spam",
+	Default = false,
 	Callback = function(Value)
-		game:GetService("Players").LocalPlayer.Settings.FOV.Value = Value
+		spawn(function()
+			while true do
+				wait(.013)
+				local A_1 = "Haha!"
+				local A_2 = chatmessage
+				local A_3 = false
+				local Event = game:GetService("ReplicatedStorage").Events.PlayerChatted
+				if Value then
+					Event:FireServer(A_1, A_2, A_3)
+				end
+			end
+		end)
 	end    
+})
+
+LPTab:AddTextbox({
+	Name = "Chat Message",
+	Default = "Cookie Hub On Top",
+	TextDisappear = false,
+	Callback = function(Value)
+		chatmessage = Value
+	end	  
 })
 
 local VisTab = Window:MakeTab({
@@ -908,8 +925,8 @@ MiscTab:AddButton({
 })
 
 MiscTab:AddButton({
-	Name = "Crash Server",
+	Name = "God Mode (Cant Kill)",
 	Callback = function()
-		OrionLib:Destroy()
+		game.Players.LocalPlayer.Character.Spawned:Destroy()
   	end
 })
