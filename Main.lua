@@ -846,6 +846,18 @@ LPTab:AddToggle({
 	end    
 })
 
+LPTab:AddToggle({
+	Name = "Anti Aim",
+	Default = false,
+	Callback = function(Value)
+		_G.AntiAimLol = Value
+		while _G.AntiAimLol do
+			Game:GetService("ReplicatedStorage").Events.ControlTurn:FireServer(-1000) 
+			wait(0.03)
+		end
+	end
+})
+
 local chatmessage = "Cookie Hub On Top"
 
 LPTab:AddToggle({
