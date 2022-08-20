@@ -714,6 +714,27 @@ CombatTab:AddToggle({
 	end    
 })
 
+CombatTab:AddToggle({
+	Name = "Auto-Farm Bananas",
+	Default = false,
+	Callback = function(Value)
+		_G.AutoFarmBanana = Value
+		while _G.AutoFarmBanana do
+			wait(0.15)
+			if game.Workspace:FindFirstChild("Debris")then
+				if game.Workspace.Debris.Bananas then
+					for _,v in pairs(game.Workspace.Debris.Bananas:GetChildren()) do
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame=
+						(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame-
+						game.Players.LocalPlayer.Character.HumanoidRootPart.Position+v.Position)
+						+Vector3.new(0,.5,0)
+					end
+				end
+			end
+		end
+	end    
+})
+
 local GMTab = Window:MakeTab({
 	Name = "Gun Mods",
 	Icon = "rbxassetid://4483345998",
@@ -993,8 +1014,3 @@ MiscTab:AddDropdown({
 		end
 	end    
 })
-
--- Cookie Hub Loading State
-print("loading...")
-wait(1)
-print("loaded!")
