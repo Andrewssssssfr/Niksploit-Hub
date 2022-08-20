@@ -706,7 +706,7 @@ CombatTab:AddToggle({
 	Callback = function(Value)
 		_G.InstRespawn = Value 
 		while _G.InstRespawn do
-			wait(0.1)
+			wait(0.01)
 			if game:GetService("Players").LocalPlayer.NRPBS.Health.Value <= 0 and game:GetService("Players").LocalPlayer.Status.Team.Value ~= "Spectator" then
 				game:GetService("ReplicatedStorage").Events.LoadCharacter:FireServer()
 			end
@@ -807,6 +807,7 @@ LPTab:AddButton({
 	Name = "Invisible",
 	Callback = function()
 		Invis()
+		game.Players.LocalPlayer.Character.Humanoid.Jump = true
   	end    
 })
 
@@ -817,9 +818,28 @@ LPTab:AddButton({
 
 		wait(1)
 		hmd:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
-			hmd.WalkSpeed = 75
+			hmd.WalkSpeed = 76
 		end)
   	end    
+})
+
+LPTab:AddToggle({
+	Name = "Fast Heal",
+	Default = false,
+	Callback = function(Value)
+		_G.FastHeal = Value
+		while _G.FastHeal do
+			if game.Players.LocalPlayer.NRPBS.Health.Value<=99 then
+				for _,v in pairs(game.Workspace.Debris:GetChildren())do
+					if v.Name=="DeadHP"then
+						v.CFrame=game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+						v.Transparency=1
+					end
+				end
+			end
+			wait(0.0000001)
+		end
+	end    
 })
 
 LPTab:AddToggle({
@@ -955,5 +975,26 @@ MiscTab:AddButton({
 	Name = "God Mode (Cant Kill)",
 	Callback = function()
 		game.Players.LocalPlayer.Character.Spawned:Destroy()
+		game.Players.LocalPlayer.Character.Humanoid.Jump = true
   	end
 })
+
+MiscTab:AddDropdown({
+	Name = "Spoof Device",
+	Default = "MouseButton1",
+	Options = {"MouseButton1", "Touch", "Gamepad1"},
+	Callback = function(Value)
+		if Value == "MouseButton1" then
+			game.ReplicatedStorage.Events.CoolNewRemote:FireServer("MouseButton1")
+		elseif Value == "Touch" then
+			game.ReplicatedStorage.Events.CoolNewRemote:FireServer("Touch")
+		elseif Value == "Gamepad1" then
+			game.ReplicatedStorage.Events.CoolNewRemote:FireServer("Gamepad1")
+		end
+	end    
+})
+
+-- Cookie Hub Loading State
+print("loading...")
+wait(1)
+print("loaded!")
